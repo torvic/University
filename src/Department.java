@@ -54,6 +54,6 @@ public class Department {
                 return course;
             }
         }
-        return null;
+        return course;
     }
 }

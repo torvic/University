@@ -74,8 +74,24 @@ public class Main {
                         JOptionPane.showMessageDialog(null, "El departamento ingresado no existe.");
                         break;
                     }
+                    // course
+                    // get course code
                     String courseCode;
-                    courseCode = JOptionPane.showInputDialog(university.showDepartments()+ "\nIngrese el departamento del curso a crear:\n");
+                    courseCode = JOptionPane.showInputDialog("Ingrese el codigo del curso a crear:\n");
+                    Course searchCourse = newDepartment.searchCourseByCode(courseCode);
+                    if (searchCourse != null) {
+                        JOptionPane.showMessageDialog(null, "El codigo ingresado ya existe.");
+                        break;
+                    }
+                    // get course name
+                    String courseName;
+                    courseName = JOptionPane.showInputDialog("Ingrese el nombre del curso a crear:\n");
+                    // create new course
+                    Course newCourse = new Course(courseName, courseCode);
+                    // create new course in department
+                    newDepartment.setCourse(newCourse);
+                    newCourse.setDepartment(newDepartment);
+                    JOptionPane.showMessageDialog(null, "El nuevo curso "+newCourse.getName()+" se ha creado con éxito en el "+newDepartment.toString());
                     break;
                 case 4:
                     break;
