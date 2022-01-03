@@ -26,29 +26,56 @@ public class Main {
             option = Integer.valueOf(JOptionPane.showInputDialog(dataMenu));
             switch (option) {
                 case 1:
-                    System.out.println(university.showDepartments());
-                    String name;
-                    String code;
                     // student
-                    name = JOptionPane.showInputDialog("Ingrese nombre de estudiante a matricular:\n");
-                    code = JOptionPane.showInputDialog("Ingrese codigo de estudiante a matricular:\n");
-                    Student e;
-                    e = new Student(name, code);
+                    String nameStudent;
+                    String codeStudent;
+                    nameStudent = JOptionPane.showInputDialog("Ingrese el nombre de estudiante a matricular:\n");
+                    codeStudent = JOptionPane.showInputDialog("Ingrese el codigo de estudiante a matricular:\n");
+                    Student newStudent;
+                    newStudent = new Student(nameStudent, codeStudent);
                     // department
-                    name = JOptionPane.showInputDialog(university.showDepartments()+ "\n\nIngrese departamento a matricular:\n");
-                    Department d;
-                    d = university.searchDepartment(name);
-                    if (d == null) {
+                    String nameDepartment;
+                    nameDepartment = JOptionPane.showInputDialog(university.showDepartments()+ "\n\nIngrese el departamento a matricular:\n");
+                    Department newDepartment;
+                    newDepartment = university.searchDepartment(nameDepartment);
+                    if (newDepartment == null) {
                         JOptionPane.showMessageDialog(null, "El departamento ingresado no existe.");
                         break;
                     }
                     // university
-                    university.enrollStudent(e, d);
+                    university.enrollStudent(newStudent, newDepartment);
                     JOptionPane.showMessageDialog(null, "El estudiante se matriculo con exito.");
                     break;
                 case 2:
+                    // department
+                    nameDepartment = JOptionPane.showInputDialog(university.showDepartments()+ "\nIngrese el departamento del profesor a asignar:\n");
+                    newDepartment = university.searchDepartment(nameDepartment);
+                    if (newDepartment == null) {
+                        JOptionPane.showMessageDialog(null, "El departamento ingresado no existe.");
+                        break;
+                    }
+                    // teacher
+                    String nameTeacher;
+                    String codeTeacher;
+                    nameTeacher = JOptionPane.showInputDialog("Ingrese el nombre del profesor a asignar:\n");
+                    codeTeacher = JOptionPane.showInputDialog("Ingrese el codigo del profesor a asignar:\n");
+                    Teacher teacher;
+                    teacher = new Teacher(nameTeacher, codeTeacher);
+                    teacher.setDepartment(newDepartment);
+                    newDepartment.setTeacher(teacher);
+
+                    JOptionPane.showMessageDialog(null, "El Profesor se ha asignado con exito al "+newDepartment.toString());
                     break;
                 case 3:
+                    // department
+                    nameDepartment = JOptionPane.showInputDialog(university.showDepartments()+ "\nIngrese el departamento del curso a crear:\n");
+                    newDepartment = university.searchDepartment(nameDepartment);
+                    if (newDepartment == null) {
+                        JOptionPane.showMessageDialog(null, "El departamento ingresado no existe.");
+                        break;
+                    }
+                    String courseCode;
+                    courseCode = JOptionPane.showInputDialog(university.showDepartments()+ "\nIngrese el departamento del curso a crear:\n");
                     break;
                 case 4:
                     break;

@@ -53,8 +53,7 @@ public class University {
         Department temp = null;
         while (iterator.hasNext()) {
             temp = iterator.next();
-            System.out.println(temp);
-            data = data + temp.getName()+"\n";
+            data = data + temp.toString()+"\n";
         }
         return data;
     }

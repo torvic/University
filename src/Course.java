@@ -10,7 +10,16 @@ public class Course {
     }
 
     Teacher teacher;
+    Department department;
     HashSet<Student> students = new HashSet<Student>();
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
     public void setStudent(Student student) {
         students.add(student);
